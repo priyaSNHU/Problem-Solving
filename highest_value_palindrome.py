@@ -1,3 +1,6 @@
+# HACKERRANK PROBLEM LINK: https://www.hackerrank.com/challenges/richie-rich/problem
+
+
 #!/bin/python3
 
 import os
