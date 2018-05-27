@@ -1,41 +1,40 @@
 # Hacker Rank Problem Link: https://www.hackerrank.com/challenges/dynamic-array/problem
 
-#!/bin/python3
+def seqIndex(x , lastAns , n):
+    return (x ^ lastAns) % n
 
-import os
-import sys
 
-#
-# Complete the dynamicArray function below.
-#
 def dynamicArray(n, queries):
-    #
-    # Write your code here.
-    #
+   
     lastAns = 0
     seqList = [[]]* n
+    value = 0
+    
     for query in queries:
         if query[0] == 1:
-            seqIndex  = (query[1] ^ lastAns) % n
-            seqList[seqIndex] = seqList[seqIndex] + [query[2]]
+            seqList[seqIndex(query[1], lastAns , n)] = seqList[seqIndex(query[1], lastAns , n)] + [query[2]]
         elif query[0] == 2:
-            seqIndex = (query[1] ^ lastAns) % n
-            value = query[2] % len(seqList[seqIndex])
-            lastAns = seqList[seqIndex][value]
+            try:
+                value = query[2] % len(seqList[seqIndex(query[1], lastAns , n)])
+            except ZeroDivisionError:
+                 print ("You can't divide by zero")
+                 break
+            lastAns = seqList[seqIndex(query[1], lastAns , n)][value]
             print(lastAns)
+        else:
+            return None
 
-if __name__ == '__main__':
     
-    nq = input().split()
+print("Enter length of seqList: ")
+n = int(input())
+print("Enter number of quries: ")
+q = int(input())
 
-    n = int(nq[0])
+queries = []
 
-    q = int(nq[1])
+for _ in range(q):
+    queries.append(list(map(int, input().strip().split())))
 
-    queries = []
+dynamicArray(n, queries)
 
-    for _ in range(q):
-        queries.append(list(map(int, input().rstrip().split())))
-    
-    result = dynamicArray(n, queries)
 
