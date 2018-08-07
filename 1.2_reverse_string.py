@@ -9,9 +9,6 @@ def revStr(s):
 
     return rev_string
 
-
-print(revStr("i love prudhvi"))
-
 #Time COmplexity: O(n) - n  is number of characters in a string
 # Memory : O(n) - size of list
 
